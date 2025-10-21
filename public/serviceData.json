@@ -1,0 +1,122 @@
+[
+  {
+    "serviceId": 1,
+    "serviceName": "Winter Coat Fitting for Dogs",
+    "providerName": "PawCare Studio",
+    "providerEmail": "info@pawcare.com",
+    "price": 25,
+    "rating": 4.9,
+    "slotsAvailable": 4,
+    "description": "Custom coat fitting and warm outfit options to keep your dog comfortable in the cold.",
+    "image": "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2023/01/12125307/Chihuahua-sitting-outdoors-in-the-snow-in-a-pink-winter-coat.jpg",
+    "category": "Clothing"
+  },
+  {
+    "serviceId": 2,
+    "serviceName": "Thermal Blanket Grooming Package",
+    "providerName": "SnowTail Groomers",
+    "providerEmail": "care@snowtail.com",
+    "price": 40,
+    "rating": 4.8,
+    "slotsAvailable": 6,
+    "description": "Includes a gentle winter bath, blow-dry, and a cozy thermal blanket wrap for pets.",
+    "image": "https://i5.walmartimages.com/asr/4bf6dd4d-8b53-4f11-8aed-dccc39fc2f43.39aed6c52a1ee90d5818dd8b2d968f6e.jpeg?odnBg=FFFFFF&odnHeight=768&odnWidth=768",
+    "category": "Grooming"
+  },
+  {
+    "serviceId": 3,
+    "serviceName": "Winter Paw Protection Treatment",
+    "providerName": "FurrySteps Spa",
+    "providerEmail": "hello@furrysteps.com",
+    "price": 18,
+    "rating": 4.7,
+    "slotsAvailable": 10,
+    "description": "Moisturizing paw balm and soft bootie fitting to prevent cracks and frostbite during walks.",
+    "image": "https://m.media-amazon.com/images/I/81uy0gWaH1L.jpg",
+    "category": "Health & Safety"
+  },
+  {
+    "serviceId": 4,
+    "serviceName": "Warm Bedding Customization",
+    "providerName": "SnugglePet Haven",
+    "providerEmail": "contact@snugglepet.com",
+    "price": 35,
+    "rating": 4.6,
+    "slotsAvailable": 5,
+    "description": "Design and tailor soft, heat-retaining bedding for your cats and dogs for cozy winter nights.",
+    "image": "https://i.etsystatic.com/24709379/r/il/ce4a60/4282504596/il_fullxfull.4282504596_f75v.jpg",
+    "category": "Comfort"
+  },
+  {
+    "serviceId": 5,
+    "serviceName": "Pet-Friendly Winter Nutrition Plan",
+    "providerName": "NutriPaws Clinic",
+    "providerEmail": "support@nutripaws.com",
+    "price": 28,
+    "rating": 4.9,
+    "slotsAvailable": 8,
+    "description": "Personalized diet and supplement plan to boost your pet’s energy and immunity in cold weather.",
+    "image": "hhttps://www.petfoodprocessing.net/ext/resources/PFP-Images/Articles-20/062821_Catidae_Lead.webp?t=1624888083&width=696",
+    "category": "Nutrition"
+  },
+  {
+    "serviceId": 6,
+    "serviceName": "Winter Wellness Vet Checkup",
+    "providerName": "FrostyPaws Veterinary",
+    "providerEmail": "clinic@frostypaws.com",
+    "price": 50,
+    "rating": 4.8,
+    "slotsAvailable": 7,
+    "description": "Comprehensive winter health checkup including temperature regulation and coat condition tests.",
+    "image": "https://www.dovelewis.org/sites/default/files/inline-images/Winter%20Care%20Tips%20for%20Your%20Pets.png",
+    "category": "Health & Safety"
+  },
+  {
+    "serviceId": 7,
+    "serviceName": "Heated Pet House Installation",
+    "providerName": "WarmWhiskers Co.",
+    "providerEmail": "service@warmwhiskers.com",
+    "price": 80,
+    "rating": 4.9,
+    "slotsAvailable": 3,
+    "description": "Install insulated and safely heated houses to protect outdoor pets from the winter chill.",
+    "image": "https://m.media-amazon.com/images/I/815hn7880iL.jpg",
+    "category": "Comfort"
+  },
+  {
+    "serviceId": 8,
+    "serviceName": "Winter-Themed Pet Photography",
+    "providerName": "CozyFrames Studio",
+    "providerEmail": "snap@cozyframes.com",
+    "price": 45,
+    "rating": 4.7,
+    "slotsAvailable": 5,
+    "description": "Capture your pet’s cutest moments in a cozy winter backdrop with themed props and outfits.",
+    "image": "https://sarahbethphotography.com/wp-content/uploads/2024/01/322-GoldPaw-Jan2023-Snow-jumping-dog.jpg",
+    "category": "Entertainment"
+  },
+  {
+    "serviceId": 9,
+    "serviceName": "Winter Walking & Exercise Program",
+    "providerName": "ChillSteps Trainers",
+    "providerEmail": "train@chillsteps.com",
+    "price": 30,
+    "rating": 4.6,
+    "slotsAvailable": 9,
+    "description": "Guided walking and light activity sessions to keep pets active and warm in colder temperatures.",
+    "image": "https://luckydogpetlodge.com/wp-content/uploads/2019/11/exercise-your-dog-in-winter.jpg",
+    "category": "Fitness"
+  },
+  {
+    "serviceId": 10,
+    "serviceName": "Cozy Cat Sweater Knitting Service",
+    "providerName": "PurrKnit Boutique",
+    "providerEmail": "knit@purrknit.com",
+    "price": 22,
+    "rating": 4.8,
+    "slotsAvailable": 6,
+    "description": "Hand-knit sweaters and scarves made from soft wool to keep cats stylishly warm all season long.",
+    "image": "https://m.media-amazon.com/images/I/71HOTsEEPSL._AC_UF350%2C350_QL80_.jpg",
+    "category": "Clothing"
+  }
+]
