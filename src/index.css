@@ -3,21 +3,60 @@
 @import "tailwindcss";
 @plugin "daisyui" {
   themes: light --default, dark --prefersdark;
+  --color-primary: #403f3f;
+  --color-secondary: #d72050;
+  --color-accent: #706f6f;
+  --color-base-200: #f3f3f3;
+  --color-base-300: #e7e7e7;
 }
 
 * {
   font-family: "Poppins", sans-serif;
 }
+a {
+  text-decoration: none;
+  transition: all 0.2s;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  position: relative;
+}
+a:hover {
+  opacity: 0.9;
+}
+a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: rgb(255, 255, 255);
+  transition: width 0.3s;
+}
+a:hover::after {
+  width: 100%;
+}
 
 /* Snowflake animation */
 @keyframes snowflakes-fall {
-  0% {top: -10%;}
-  100% {top: 100%;}
+  0% {
+    top: -10%;
+  }
+  100% {
+    top: 100%;
+  }
 }
 
 @keyframes snowflakes-shake {
-  0%, 100% {transform: translateX(0);}
-  50% {transform: translateX(20px);}
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(20px);
+  }
 }
 
 .snowflake {

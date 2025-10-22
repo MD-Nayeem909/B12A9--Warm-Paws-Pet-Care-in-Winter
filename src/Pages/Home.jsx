@@ -2,7 +2,7 @@ import React from 'react';
 
 const Home = () => {
     return (
-        <div>
+        <div className='container mx-auto'>
             <h1>Hello I  am Home</h1>
         </div>
     );

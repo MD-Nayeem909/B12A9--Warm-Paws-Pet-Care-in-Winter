@@ -1,15 +1,15 @@
 import React from "react";
 import { Link, NavLink } from "react-router";
 import { useTheme } from "../Providers/ThemeContext";
+import { LogIn } from "lucide-react";
 
 const Navbar = () => {
   const { toggleTheme, theme } = useTheme();
-  
 
-  const links = ["Home", "Services", "My Profile"];
+  const links = ["Home", "Services", "Profile"];
   return (
-    <div>
-      <div className="navbar bg-base-100 shadow-sm">
+    <div className="sticky top-0 z-50 bg-linear-to-r from-indigo-500 to-purple-500 px-8 py-4 flex justify-between items-center [box-shadow:0_2px_10px_rgba(0,0,0,0.1)] bg-base-100 shadow-sm">
+      <div className="navbar  container mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -40,12 +40,14 @@ const Navbar = () => {
               ))}
             </ul>
           </div>
-          <NavLink to="/" className="text-3xl font-semibold">WarmPaws</NavLink>
+          <NavLink to="/" className="text-3xl font-semibold">
+            WarmPaws
+          </NavLink>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             {links.map((link) => (
-              <li key={link}>
+              <li key={link} className="px-4">
                 <NavLink to={`/${link}`}>{link}</NavLink>
               </li>
             ))}
@@ -53,13 +55,13 @@ const Navbar = () => {
         </div>
         <div className="navbar-end space-x-4">
           <input
-            onClick={toggleTheme}
+            onChange={toggleTheme}
             type="checkbox"
             checked={theme === "dark"}
             className="toggle border-indigo-600 bg-indigo-500 checked:border-orange-500 checked:bg-orange-400 checked:text-orange-800"
           />
-          <Link to="/login" className="btn">
-            LogIn
+          <Link to="/auth/login" className="btn btn-primary">
+            <LogIn/>LogIn
           </Link>
         </div>
       </div>
