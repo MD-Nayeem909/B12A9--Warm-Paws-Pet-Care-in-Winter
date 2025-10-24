@@ -7,14 +7,18 @@ import Home from "../Pages/Home";
 import Services from "../Pages/Services";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
+import PageNotFound from "../Pages/Error/PageNotFound";
+import ServiceDetails from "../Components/ServiceDetails";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <HomeLayout />,
+    errorElement: <PageNotFound />,
+    hydrateFallbackElement: <h1>Loading...</h1>,
     children: [
       {
-        path: "/home",
+        path: "/",
         element: <Home />,
       },
       {
@@ -26,6 +30,14 @@ const router = createBrowserRouter([
         element: <Profile />,
       },
     ],
+  },
+  {
+    path: "/*",
+    element: <PageNotFound />,
+  },
+  {
+    path: "/details/:id",
+    element: <ServiceDetails />,
   },
 
   {

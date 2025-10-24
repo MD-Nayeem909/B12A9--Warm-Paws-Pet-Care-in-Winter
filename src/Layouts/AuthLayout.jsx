@@ -5,7 +5,7 @@ import Footer from "../Components/Footer";
 
 const AuthLayout = () => {
   return (
-    <div className="bg-base-200 min-h-screen">
+    <div className="bg-base-200">
       <header className="">
         <Navbar></Navbar>
       </header>

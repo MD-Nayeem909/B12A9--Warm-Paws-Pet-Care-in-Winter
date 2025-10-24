@@ -1,21 +1,47 @@
-import { Lock, LogOut, Mail, User } from "lucide-react";
-import React from "react";
-import { Link } from "react-router";
+import { Lock, LogOut, Mail, User, UserPlus } from "lucide-react";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router";
+import { AuthContext } from "../Providers/AuthContext";
+import { FcGoogle } from "react-icons/fc";
 
 const Register = () => {
+  const navigate = useNavigate();
+  const { setUser, createUser, updateUserData } = useContext(AuthContext);
+  // const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [photo, setPhoto] = useState("");
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+  const [checked, setChecked] = useState(false);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!checked) return alert("Please agree to the terms and conditions");
+    try {
+      const userCredential = await createUser(email, password);
+      const user = userCredential.user;
+      await updateUserData(name, photo);
+      if (!user) return ;
+      setUser(user);
+      navigate("/");
+    } catch (error) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      alert(errorMessage);
+    }
+  };
   return (
     <div className="container mx-auto px-4 py-12">
-      <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden p-8">
+      <div className="max-w-md mx-auto bg-base-100 rounded-xl shadow-md overflow-hidden p-8">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-blue-900 mb-2">
-          Create Account
+            Create Account
           </h1>
           <p className="text-gray-600">
-          Join WarmPaws to get the best winter care for your pet
+            Join WarmPaws to get the best winter care for your pet
           </p>
         </div>
 
-        <form className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
           {/* User Name */}
           <div>
             <label
@@ -31,7 +57,10 @@ const Register = () => {
               <input
                 type="text"
                 id="name"
-                className="pl-10 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="pl-10 w-full px-4 py-2 border border-gray-300 rounded-full focus:ring-2 focus:ring-blue-500 focus:border-blue-500
+                text-gray-500"
                 placeholder="User Name"
               />
             </div>
@@ -51,12 +80,36 @@ const Register = () => {
               <input
                 type="email"
                 id="email"
-                className="pl-10 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="pl-10 w-full px-4 py-2 border border-gray-300 rounded-full focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-500"
                 placeholder="your@email.com"
               />
             </div>
           </div>
-          {/* Password */}
+          {/* Photo URL */}
+          <div>
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
+              Photo URL
+            </label>
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <Lock className="w-5 h-5 text-gray-400" />
+              </div>
+              <input
+                type="url"
+                id="photo"
+                value={photo}
+                onChange={(e) => setPhoto(e.target.value)}
+                className="pl-10 w-full px-4 py-2 border border-gray-300 rounded-full focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-500"
+                placeholder="https://example.com/photo.jpg"
+              />
+            </div>
+          </div>
+          {/*Password */}
           <div>
             <label
               htmlFor="password"
@@ -71,27 +124,9 @@ const Register = () => {
               <input
                 type="password"
                 id="password"
-                className="pl-10 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                placeholder="••••••••"
-              />
-            </div>
-          </div>
-          {/*Confirm Password */}
-          <div>
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
-              Confirm Password
-            </label>
-            <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Lock className="w-5 h-5 text-gray-400" />
-              </div>
-              <input
-                type="password"
-                id="confirm-password"
-                className="pl-10 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="pl-10 w-full px-4 py-2 border border-gray-300 rounded-full focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-500"
                 placeholder="••••••••"
               />
             </div>
@@ -102,6 +137,8 @@ const Register = () => {
               <input
                 id="remember-me"
                 type="checkbox"
+                checked={checked}
+                onChange={(e) => setChecked(e.target.checked)}
                 className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
               />
               <label
@@ -114,7 +151,7 @@ const Register = () => {
                   className="text-blue-600 hover:text-blue-800 font-medium"
                 >
                   {" "}
-                Terms of Service
+                  Terms of Service
                 </Link>{" "}
                 and{" "}
                 <Link
@@ -129,9 +166,9 @@ const Register = () => {
 
           <button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg font-medium transition duration-300 flex items-center justify-center gap-2"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-full font-medium transition duration-300 flex items-center justify-center gap-2"
           >
-            <LogOut className="w-5 h-5" /> Create Account
+            <UserPlus className="mr-2" /> Create Account
           </button>
         </form>
 
@@ -151,12 +188,10 @@ const Register = () => {
           <p className="text-center text-sm text-gray-500 mb-4">
             Or continue with
           </p>
-          <div className="grid grid-cols-2 gap-4">
-            <button className="bg-white border border-gray-300 rounded-lg py-2 px-4 flex items-center justify-center gap-2 text-gray-700 hover:bg-gray-50 transition duration-300">
-              <i data-feather="facebook" className="text-blue-600"></i> Facebook
-            </button>
-            <button className="bg-white border border-gray-300 rounded-lg py-2 px-4 flex items-center justify-center gap-2 text-gray-700 hover:bg-gray-50 transition duration-300">
-              <i data-feather="github" className="text-gray-800"></i> Google
+          <div className="flex ">
+            <button className="btn btn-outline w-full bg-base-100 hover:bg-base-200  border-gray-300 shadow-lg rounded-full">
+            <FcGoogle className="" size={20}/>
+              Signup with Google
             </button>
           </div>
         </div>

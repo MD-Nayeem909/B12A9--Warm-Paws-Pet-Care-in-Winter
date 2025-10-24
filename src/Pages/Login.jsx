@@ -1,21 +1,31 @@
 import { Lock, LogIn, Mail } from "lucide-react";
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router";
+import { AuthContext } from "../Providers/AuthContext";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const {existingUser}=useContext(AuthContext)
+
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const user = await existingUser(email, password);
+    console.log(user);
+    
+  };
   return (
     <div className="container mx-auto px-4 py-12">
-      <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden p-8">
+      <div className="max-w-md mx-auto bg-base-100 rounded-xl shadow-md overflow-hidden p-8">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-blue-900 mb-2">
-            Welcome Back
-          </h1>
-          <p className="text-gray-600">
-            Login to access your pet's winter care dashboard
-          </p>
+          <h1 className="text-3xl font-bold mb-2">Welcome Back</h1>
+          <p className="">Login to access your pet's winter care dashboard</p>
         </div>
 
-        <form className="space-y-6">
+        <form className="space-y-6" onSubmit={handleSubmit}>
           <div>
             <label
               htmlFor="email"
@@ -28,9 +38,11 @@ const Login = () => {
                 <Mail className="w-5 h-5 text-gray-400" />
               </div>
               <input
+                onChange={(e) => setEmail(e.target.value)}
                 type="email"
                 id="email"
-                className="pl-10 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                value={email}
+                className="pl-10 w-full px-4 py-2 border border-gray-300 rounded-full focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="your@email.com"
               />
             </div>
@@ -48,9 +60,11 @@ const Login = () => {
                 <Lock className="w-5 h-5 text-gray-400" />
               </div>
               <input
+                onChange={(e) => setPassword(e.target.value)}
                 type="password"
                 id="password"
-                className="pl-10 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                value={password}
+                className="pl-10 w-full px-4 py-2 border border-gray-300 rounded-full focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="••••••••"
               />
             </div>
@@ -80,7 +94,7 @@ const Login = () => {
 
           <button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg font-medium transition duration-300 flex items-center justify-center gap-2"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-full font-medium transition duration-300 flex items-center justify-center gap-2"
           >
             <LogIn className="w-5 h-5" /> Login
           </button>
@@ -102,12 +116,36 @@ const Login = () => {
           <p className="text-center text-sm text-gray-500 mb-4">
             Or continue with
           </p>
-          <div className="grid grid-cols-2 gap-4">
-            <button className="bg-white border border-gray-300 rounded-lg py-2 px-4 flex items-center justify-center gap-2 text-gray-700 hover:bg-gray-50 transition duration-300">
-              <i data-feather="facebook" className="text-blue-600"></i> Facebook
-            </button>
-            <button className="bg-white border border-gray-300 rounded-lg py-2 px-4 flex items-center justify-center gap-2 text-gray-700 hover:bg-gray-50 transition duration-300">
-              <i data-feather="github" className="text-gray-800"></i> Google
+          <div className="flex justify-center gap-4">
+            <button className="btn w-full rounded-full bg-white text-black border-[#e5e5e5]">
+              <svg
+                aria-label="Google logo"
+                width="16"
+                height="16"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+              >
+                <g>
+                  <path d="m0 0H512V512H0" fill="#fff"></path>
+                  <path
+                    fill="#34a853"
+                    d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"
+                  ></path>
+                  <path
+                    fill="#4285f4"
+                    d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"
+                  ></path>
+                  <path
+                    fill="#fbbc02"
+                    d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"
+                  ></path>
+                  <path
+                    fill="#ea4335"
+                    d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"
+                  ></path>
+                </g>
+              </svg>
+              Login with Google
             </button>
           </div>
         </div>

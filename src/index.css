@@ -3,17 +3,31 @@
 @import "tailwindcss";
 @plugin "daisyui" {
   themes: light --default, dark --prefersdark;
-  --color-primary: #403f3f;
-  --color-secondary: #d72050;
-  --color-accent: #706f6f;
-  --color-base-200: #f3f3f3;
-  --color-base-300: #e7e7e7;
 }
+
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  --color-primary: #1e3a8a;
+  --color-secondary: #2563eb;
+  --color-accent: #706f6f;
+  --color-base-200: #eff6ff;
+  --color-base-300: #2563eb;
+  --gradient-neutral: linear-gradient(180deg, #1e3a8a 0%, #2563eb 100%);
+}
+
 
 * {
   font-family: "Poppins", sans-serif;
 }
-a {
+.bg-profile {
+  background-image: url("./assets/bangladesh-t20-national-league-2024.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+
+.decoration {
   text-decoration: none;
   transition: all 0.2s;
   font-weight: 500;
@@ -21,11 +35,12 @@ a {
   align-items: center;
   gap: 0.3rem;
   position: relative;
+  color: rgb(255, 255, 255);
 }
-a:hover {
+.decoration:hover {
   opacity: 0.9;
 }
-a::after {
+.decoration::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -35,7 +50,7 @@ a::after {
   background: rgb(255, 255, 255);
   transition: width 0.3s;
 }
-a:hover::after {
+.decoration:hover::after {
   width: 100%;
 }
 
