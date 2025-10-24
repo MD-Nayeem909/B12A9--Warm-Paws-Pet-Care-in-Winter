@@ -9,6 +9,7 @@ import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import PageNotFound from "../Pages/Error/PageNotFound";
 import ServiceDetails from "../Components/ServiceDetails";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -27,7 +28,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/profile",
-        element: <Profile />,
+        element: (
+          <PrivateRoute>
+            <Profile />{" "}
+          </PrivateRoute>
+        ),
       },
     ],
   },
@@ -39,7 +44,6 @@ const router = createBrowserRouter([
     path: "/details/:id",
     element: <ServiceDetails />,
   },
-
   {
     path: "/auth",
     element: <AuthLayout />,

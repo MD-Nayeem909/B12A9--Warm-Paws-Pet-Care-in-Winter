@@ -8,10 +8,13 @@ const ServiceDetails = () => {
   const location = useLocation();
   const params = useParams();
   const [service, setService] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     if (location.state?.service) {
       setService(location.state.service);
+      setLoading(false);
     } else {
       const storedServices = JSON.parse(localStorage.getItem("services"));
       if (storedServices) {
@@ -20,8 +23,18 @@ const ServiceDetails = () => {
         );
         setService(found);
       }
+      setLoading(false);
     }
   }, [location.state, params.id]);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <span className="loading loading-infinity text-transparent bg-clip-text bg-linear-to-br from-indigo-500 to-purple-500 loading-xl w-[100px]"></span>
+      </div>
+    );
+  }
+
   if (!service) {
     return <div className="text-center text-gray-500 mt-10">No data found</div>;
   }
@@ -37,7 +50,7 @@ const ServiceDetails = () => {
             <img
               src={service?.image}
               alt={service?.serviceName}
-              className="w-full h-90 object-cover"
+              className="skeleton w-full h-90 object-cover"
             />
             <span className="absolute top-3 left-3 bg-rose-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
               {service.category}
@@ -95,7 +108,7 @@ const ServiceDetails = () => {
               <Link to="/" className="btn btn-outline btn-rose w-1/2 mr-2">
                 <Home className="w-4 h-4 mr-2" /> Back to Home
               </Link>
-              <button className="btn bg-rose-600 hover:bg-rose-700 text-white w-1/2">
+              <button className=" btn bg-rose-600 hover:bg-rose-700 text-white w-1/2">
                 Book Service
               </button>
             </div>

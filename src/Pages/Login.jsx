@@ -1,7 +1,8 @@
 import { Lock, LogIn, Mail } from "lucide-react";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../Providers/AuthContext";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -9,15 +10,30 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   // const [showPassword, setShowPassword] = useState(false);
-  const { existingUser, setUser } = useContext(AuthContext);
+  const { existingUser, user, googleSignIn } = useContext(AuthContext);
   const currentLocation = location.state?.from || "/";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const user = await existingUser(email, password);
-    // setUser(user.user);
-    // navigate(currentLocation);
+    try {
+      await existingUser(email, password);
+      navigate(currentLocation);
+    } catch (error) {
+      const errorMessage = error.message;
+      toast.error(errorMessage);
+    }
   };
+  const handleGoogleSignIn = () => {
+    googleSignIn().then(() => {
+      navigate(currentLocation);
+    });
+  };
+  useEffect(() => {
+    if (user) {
+      navigate(currentLocation);
+    }
+  }, [user, navigate, currentLocation]);
+
   return (
     <div className="container mx-auto px-4 py-12">
       <div className="max-w-md mx-auto bg-base-100 rounded-xl shadow-md overflow-hidden p-8">
@@ -118,7 +134,10 @@ const Login = () => {
             Or continue with
           </p>
           <div className="flex justify-center gap-4">
-            <button className="btn w-full rounded-full bg-white text-black border-[#e5e5e5]">
+            <button
+              onClick={handleGoogleSignIn}
+              className="btn w-full rounded-full bg-white text-black border-[#e5e5e5]"
+            >
               <svg
                 aria-label="Google logo"
                 width="16"

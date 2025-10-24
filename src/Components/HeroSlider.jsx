@@ -16,7 +16,7 @@ const HeroSlider = () => {
     <div className="mb-12">
       <Swiper
         spaceBetween={30}
-        // centeredSlides={true}
+        centeredSlides={true}
         // autoplay={{
         //   delay: 2500,
         //   disableOnInteraction: false,
@@ -40,21 +40,24 @@ const HeroSlider = () => {
             slidesPerView: 1,
           },
         }}
-        className="mySwiper h-[306px] w-full rounded-xl"
+        className="mySwiper h-[306px] md:h-[400px] max-w-7xl rounded-xl"
       >
         <SwiperSlide className="flex flex-col md:flex-row items-center bg-linear-to-r from-blue-100 to-purple-100 rounded-xl ">
           {
             <img
               src={slide1}
               alt=""
-              className=" w-full object-cover overflow-hidden"
+              className=" w-full object-cover h-full overflow-hidden"
             />
           }
         </SwiperSlide>
+
         <SwiperSlide className="flex flex-col md:flex-row items-center bg-linear-to-r from-blue-100 to-purple-100 rounded-xl p-8 mb-12  h-full">
           Slide 2
         </SwiperSlide>
-        <SwiperSlide className="flex flex-col md:flex-row items-center justify-center bg-linear-to-r from-blue-100 to-purple-100 rounded-xl p-6 ">
+
+          {/* Slide 3 */}
+        <SwiperSlide className="flex flex-col md:flex-row  bg-linear-to-r from-blue-100 to-purple-100 rounded-xl p-6 ">
           <div className="m-4 md:m-8 flex flex-col justify-center items-center">
             <h1 className="text-4xl md:text-5xl font-bold text-blue-900 mb-4">
               Keep Your Pets Cozy This Winter
@@ -79,21 +82,27 @@ const HeroSlider = () => {
             </div>
           </div>
         </SwiperSlide>
+
         <SwiperSlide className="flex flex-col md:flex-row items-center bg-linear-to-r from-blue-100 to-purple-100 rounded-xl p-8 mb-12  h-full">
           Slide 4
         </SwiperSlide>
+
         <SwiperSlide className="flex flex-col md:flex-row items-center bg-linear-to-r from-blue-100 to-purple-100 rounded-xl p-8 mb-12  h-full">
           Slide 5
         </SwiperSlide>
+
         <SwiperSlide className="flex flex-col md:flex-row items-center bg-linear-to-r from-blue-100 to-purple-100 rounded-xl p-8 mb-12  h-full">
           Slide 6
         </SwiperSlide>
+
         <SwiperSlide className="flex flex-col md:flex-row items-center bg-linear-to-r from-blue-100 to-purple-100 rounded-xl p-8 mb-12  h-full">
           Slide 7
         </SwiperSlide>
+
         <SwiperSlide className="flex flex-col md:flex-row items-center bg-linear-to-r from-blue-100 to-purple-100 rounded-xl p-8 mb-12  h-full">
           Slide 8
         </SwiperSlide>
+
         <SwiperSlide className="flex flex-col md:flex-row items-center bg-linear-to-r from-blue-100 to-purple-100 rounded-xl p-8 mb-12  h-full">
           Slide 9
         </SwiperSlide>

@@ -18,8 +18,7 @@ const Register = () => {
     e.preventDefault();
     if (!checked) return toast.error("Please agree to the terms and conditions");
     try {
-      const userCredential = await createUser(email, password);
-      const user = userCredential.user;
+      await createUser(email, password);
       const updatedUser = await updateUserData({
         displayName: name,
         photoURL: photo,
@@ -28,7 +27,7 @@ const Register = () => {
       navigate("/");
     } catch (error) {
       const errorMessage = error.message;
-      toast(errorMessage);
+      toast.error(errorMessage);
     }
   };
   return (

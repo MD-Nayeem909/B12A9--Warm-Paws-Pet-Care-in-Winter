@@ -3,9 +3,11 @@ import { useState } from "react";
 import { Mail, User, Camera } from "lucide-react";
 import { AuthContext } from "../Providers/AuthContext";
 import toast from "react-hot-toast";
+import PopupModal from "../Components/PopupModal";
 
 const Profile = () => {
-  const { user, setUser, updateUserData, deleteAccount } = useContext(AuthContext);
+  const { user, setUser, updateUserData, deleteAccount } =
+    useContext(AuthContext);
   const [editMode, setEditMode] = useState(false);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -30,6 +32,19 @@ const Profile = () => {
       setEditMode(false);
     } catch (error) {
       toast.error("Error updating profile: " + error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      setLoading(true);
+      await deleteAccount();
+      setUser(null);
+      toast.success("Account deleted successfully ✅");
+    } catch (error) {
+      toast.error("Error deleting account: " + error.message);
     } finally {
       setLoading(false);
     }
@@ -119,12 +134,17 @@ const Profile = () => {
                     }
                   />
                 </div>
-                <button
-                  onClick={handleUpdate}
-                  className="btn btn-primary w-full"
-                >
-                  Save Changes
-                </button>
+                <div className="flex  gap-2">
+                  <button onClick={handleUpdate} className="btn btn-primary ">
+                    Save Changes
+                  </button>
+                  <button
+                    onClick={() => setEditMode(false)}
+                    className="grow btn bg-rose-500 hover:bg-rose-700 text-white"
+                  >
+                    Cancel
+                  </button>
+                </div>
               </div>
             ) : (
               <div className="space-y-4">
@@ -145,7 +165,9 @@ const Profile = () => {
                   Update profile
                 </button>
                 <button
-                  onClick={() => setEditMode(true)}
+                  onClick={() =>
+                    document.getElementById("my_modal_5").showModal()
+                  }
                   className="btn bg-rose-500 hover:bg-rose-700 text-white rounded-full w-full"
                 >
                   Remove this account
@@ -153,6 +175,7 @@ const Profile = () => {
               </div>
             )}
           </div>
+          <PopupModal text="Are you sure you want to delete your account?" cb={handleDelete}></PopupModal>
         </div>
       </div>
     </div>
