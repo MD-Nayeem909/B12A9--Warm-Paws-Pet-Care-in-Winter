@@ -10,6 +10,7 @@ import Register from "../Pages/Register";
 import PageNotFound from "../Pages/Error/PageNotFound";
 import ServiceDetails from "../Components/ServiceDetails";
 import PrivateRoute from "./PrivateRoute";
+import ForgotPass from "../Components/ForgotPass";
 
 const router = createBrowserRouter([
   {
@@ -42,7 +43,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/forgot-password",
-    element: <PageNotFound />,
+    element: <ForgotPass />,
   },
   {
     path: "/details/:id",

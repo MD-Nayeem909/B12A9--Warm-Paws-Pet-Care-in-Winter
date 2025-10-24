@@ -51,7 +51,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-[calc(100vh-285px)] bg-base-200">
+    <div className="flex justify-center items-center min-h-[calc(100vh-300.86px)] bg-base-200">
       <div className="">
         {/* Header Section */}
         <div className="max-w-5xl mx-auto px-6 py-10 ">
