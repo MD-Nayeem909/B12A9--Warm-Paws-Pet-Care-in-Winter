@@ -1,21 +1,38 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
-import { Edit, Mail, User, Camera } from "lucide-react";
-import userImg from "../assets/demo-app.webp";
+import { Mail, User, Camera } from "lucide-react";
+import { AuthContext } from "../Providers/AuthContext";
+import toast from "react-hot-toast";
 
 const Profile = () => {
-  const [user, setUser] = useState({
-    name: "Jesse Jones",
-    email: "jesse@example.com",
-    image: userImg,
+  const { user, setUser, updateUserData, deleteAccount } = useContext(AuthContext);
+  const [editMode, setEditMode] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    displayName: user?.displayName || "",
+    email: user?.email || "",
+    photoURL: user?.photoURL || "",
   });
 
-  const [editMode, setEditMode] = useState(false);
-  const [formData, setFormData] = useState(user);
-
-  const handleUpdate = () => {
-    setUser(formData);
-    setEditMode(false);
+  const handleUpdate = async () => {
+    try {
+      setLoading(true);
+      await updateUserData({
+        displayName: formData.displayName,
+        photoURL: formData.photoURL,
+      });
+      setUser({
+        ...user,
+        displayName: formData.displayName,
+        photoURL: formData.photoURL,
+      });
+      toast.success("Profile updated successfully ✅");
+      setEditMode(false);
+    } catch (error) {
+      toast.error("Error updating profile: " + error.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -25,7 +42,7 @@ const Profile = () => {
         <div className="max-w-5xl mx-auto px-6 py-10 ">
           <div className="flex justify-between items-center mb-6">
             <h1 className="text-3xl font-bold">
-              Hello, {user.name.split(" ")[0]} 👋
+              Hello, {user?.displayName?.split(" ")[0] || "User"} 👋
             </h1>
           </div>
           <p className="text-sm opacity-80">
@@ -35,12 +52,12 @@ const Profile = () => {
         </div>
 
         {/* Profile Card */}
-        <div className="bg-base-200 text-gray-800 rounded-2xl shadow-xl max-w-5xl mx-auto py-10 flex flex-col md:flex-row items-center gap-6">
+        <div className="bg-base-100 rounded-2xl shadow-xl  mx-auto p-10 flex flex-col md:flex-row items-center gap-6">
           {/* Left - Image */}
           <div className="flex flex-col w-1/2 items-center">
             <div className="relative">
               <img
-                src={user.image}
+                src={user?.photoURL}
                 alt="Profile"
                 className="w-40 h-40 rounded-full object-cover border-4 border-indigo-500 shadow-lg"
               />
@@ -54,8 +71,8 @@ const Profile = () => {
                     if (file) {
                       const reader = new FileReader();
                       reader.onloadend = () => {
-                        setFormData({ ...formData, image: reader.result });
-                        setUser({ ...user, image: reader.result });
+                        setFormData({ ...formData, photoURL: reader.result });
+                        setUser({ ...user, photoURL: reader.result });
                       };
                       reader.readAsDataURL(file);
                     }
@@ -64,9 +81,9 @@ const Profile = () => {
               </label>
             </div>
             <h2 className="text-xl text-primary font-semibold mt-4">
-              {user.name}
+              {user?.displayName}
             </h2>
-            <p className="text-gray-500">{user.email}</p>
+            <p className="text-gray-500">{user?.email}</p>
           </div>
 
           {/* Right - Info */}
@@ -75,15 +92,15 @@ const Profile = () => {
               <div className="space-y-4">
                 <div>
                   <label className="text-sm font-semibold text-primary">
-                    Name
+                    Display Name
                   </label>
                   <input
                     type="text"
                     className="input input-bordered w-full mt-1"
-                    value={formData.name}
+                    value={formData.displayName}
                     placeholder="Your Name"
                     onChange={(e) =>
-                      setFormData({ ...formData, name: e.target.value })
+                      setFormData({ ...formData, displayName: e.target.value })
                     }
                   />
                 </div>
@@ -113,17 +130,25 @@ const Profile = () => {
               <div className="space-y-4">
                 <div className="flex items-center gap-2">
                   <User className="text-indigo-600" />
-                  <p className="text-primary font-medium">{user.name}</p>
+                  <p className="text-primary font-medium">
+                    {user?.displayName}
+                  </p>
                 </div>
                 <div className="flex items-center gap-2">
                   <Mail className="text-indigo-600" />
-                  <p className="text-primary font-medium">{user.email}</p>
+                  <p className="text-primary font-medium">{user?.email}</p>
                 </div>
                 <button
                   onClick={() => setEditMode(true)}
-                  className="btn btn-outline  btn-secondary w-full"
+                  className="btn btn-outline rounded-full btn-secondary w-full"
                 >
-                  Update Profile
+                  Update profile
+                </button>
+                <button
+                  onClick={() => setEditMode(true)}
+                  className="btn bg-rose-500 hover:bg-rose-700 text-white rounded-full w-full"
+                >
+                  Remove this account
                 </button>
               </div>
             )}

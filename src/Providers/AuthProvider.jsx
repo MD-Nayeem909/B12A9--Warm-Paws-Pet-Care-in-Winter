@@ -1,6 +1,7 @@
 import React, {  useEffect, useState } from "react";
 import {
   createUserWithEmailAndPassword,
+  deleteUser,
   getAuth,
   GoogleAuthProvider,
   onAuthStateChanged,
@@ -36,12 +37,18 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
-  const updateUserData = (name, photo) => {
-    return updateProfile(auth.currentUser, {
-      displayName: name,
-      photoURL: photo,
-    });
+  const deleteAccount = () => {
+    return deleteUser(auth.currentUser);
+  }
+  const updateUserData = async (updateData) => {
+    if(!auth.currentUser) {
+      throw new Error('User not logged in');
+    }
+    await updateProfile(auth.currentUser, updateData);
+    await auth.currentUser.reload();
+    return auth.currentUser;
   };
+  
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -59,6 +66,7 @@ const AuthProvider = ({ children }) => {
     loading,
     googleSignIn,
     updateUserData,
+    deleteAccount,
   };
   return <AuthContext.Provider value={authData}>{children}</AuthContext.Provider>;
 };

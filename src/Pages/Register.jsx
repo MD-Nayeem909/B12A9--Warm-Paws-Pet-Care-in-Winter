@@ -3,6 +3,7 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../Providers/AuthContext";
 import { FcGoogle } from "react-icons/fc";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -15,18 +16,19 @@ const Register = () => {
   const [checked, setChecked] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!checked) return alert("Please agree to the terms and conditions");
+    if (!checked) return toast.error("Please agree to the terms and conditions");
     try {
       const userCredential = await createUser(email, password);
       const user = userCredential.user;
-      await updateUserData(name, photo);
-      if (!user) return ;
-      setUser(user);
+      const updatedUser = await updateUserData({
+        displayName: name,
+        photoURL: photo,
+      });
+      setUser(updatedUser);
       navigate("/");
     } catch (error) {
-      const errorCode = error.code;
       const errorMessage = error.message;
-      alert(errorMessage);
+      toast(errorMessage);
     }
   };
   return (
@@ -190,7 +192,7 @@ const Register = () => {
           </p>
           <div className="flex ">
             <button className="btn btn-outline w-full bg-base-100 hover:bg-base-200  border-gray-300 shadow-lg rounded-full">
-            <FcGoogle className="" size={20}/>
+              <FcGoogle className="" size={20} />
               Signup with Google
             </button>
           </div>

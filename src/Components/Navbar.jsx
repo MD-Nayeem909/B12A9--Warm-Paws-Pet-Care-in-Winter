@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router";
 import { useTheme } from "../Providers/ThemeContext";
 import { LogIn, LogOut, UserPlus } from "lucide-react";
 import { AuthContext } from "../Providers/AuthContext";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const { user, logoutUser } = useContext(AuthContext);
@@ -11,10 +12,10 @@ const Navbar = () => {
   const handleLogout = () => {
     logoutUser()
       .then(() => {
-        alert("Logout successful");
+        toast.success("Logout successful");
       })
       .catch((error) => {
-        console.log(error.message);
+        toast.error(error.message);
       });
   };
 
@@ -47,7 +48,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-linear-to-b from-indigo-500 to-purple-500  rounded-box z-999 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-linear-to-b from-indigo-500 to-purple-500 rounded-box z-999 mt-3 w-52 p-2 shadow"
             >
               {links.map((link) => (
                 <li key={link} className="px-3">
@@ -60,7 +61,7 @@ const Navbar = () => {
                 </li>
               ))}
               <div className="flex justify-between items-center px-5">
-                <p className="text-white">Theme</p>
+                <p className="text-white text-sm decoration">Theme</p>
                 <input
                   onChange={toggleTheme}
                   type="checkbox"
@@ -97,10 +98,12 @@ const Navbar = () => {
         <div className="navbar-end">
           {user ? (
             <div className="flex items-center gap-5">
-              <button onClick={handleLogout} className="btn rounded-full">
-                <LogOut className="" />
+              <div className="flex items-center gap-2">
+              <LogOut className="text-white" />
+              <button onClick={handleLogout} className="text-white font-medium">
                 LogOut
               </button>
+              </div>
 
               <Link to="/profile" className="text-white">
                 <div className="avatar w-10">
@@ -111,13 +114,13 @@ const Navbar = () => {
               </Link>
             </div>
           ) : (
-            <div className="flex items-center space-x-4">
-              <Link to="/auth/login" className="btn-ghost flex text-white">
+            <div className="flex items-center text-white space-x-4">
+              <Link to="/auth/login" className="btn-ghost flex">
                 <LogIn className="mr-2" />
                 Login
               </Link>
-              <span className="text-base-200 text-2xl">|</span>
-              <Link to="/auth/register" className=" btn-ghost flex text-white">
+              <span className=" text-2xl">|</span>
+              <Link to="/auth/register" className=" btn-ghost flex">
                 <UserPlus className="mr-2" />
                 Register
               </Link>

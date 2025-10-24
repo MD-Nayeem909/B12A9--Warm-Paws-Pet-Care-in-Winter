@@ -1,21 +1,22 @@
 import { Lock, LogIn, Mail } from "lucide-react";
 import React, { useContext, useState } from "react";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../Providers/AuthContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const {existingUser}=useContext(AuthContext)
-
-
+  const navigate = useNavigate();
+  const location = useLocation();
+  // const [showPassword, setShowPassword] = useState(false);
+  const { existingUser, setUser } = useContext(AuthContext);
+  const currentLocation = location.state?.from || "/";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const user = await existingUser(email, password);
-    console.log(user);
-    
+    // setUser(user.user);
+    // navigate(currentLocation);
   };
   return (
     <div className="container mx-auto px-4 py-12">
