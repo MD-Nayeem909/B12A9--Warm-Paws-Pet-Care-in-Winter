@@ -50,7 +50,7 @@ const ServiceDetails = () => {
             <img
               src={service?.image}
               alt={service?.serviceName}
-              className="skeleton w-full h-90 object-cover"
+              className="w-full h-90 object-cover"
             />
             <span className="absolute top-3 left-3 bg-rose-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
               {service.category}

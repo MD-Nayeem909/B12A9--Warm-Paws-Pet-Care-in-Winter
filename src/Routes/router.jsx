@@ -41,8 +41,12 @@ const router = createBrowserRouter([
     element: <PageNotFound />,
   },
   {
+    path: "/forgot-password",
+    element: <PageNotFound />,
+  },
+  {
     path: "/details/:id",
-    element: <ServiceDetails />,
+    element: <PrivateRoute> <ServiceDetails /> </PrivateRoute>,
   },
   {
     path: "/auth",

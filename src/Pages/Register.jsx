@@ -1,13 +1,15 @@
-import { Lock, LogOut, Mail, User, UserPlus } from "lucide-react";
+import { Lock, Mail, User, UserPlus } from "lucide-react";
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../Providers/AuthContext";
 import { FcGoogle } from "react-icons/fc";
 import toast from "react-hot-toast";
+import passwordValidation from "../Utility/passwordValidator";
 
 const Register = () => {
   const navigate = useNavigate();
-  const { setUser, createUser, updateUserData } = useContext(AuthContext);
+  const { createUser, updateUserData, googleSignIn } = useContext(AuthContext);
+  const currentLocation = useLocation().state?.from || "/";
   // const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [photo, setPhoto] = useState("");
@@ -16,19 +18,30 @@ const Register = () => {
   const [checked, setChecked] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!checked) return toast.error("Please agree to the terms and conditions");
+    if (!checked)
+      return toast.error("Please agree to the terms and conditions");
+    if (!passwordValidation(password)) {
+      return toast.error(
+        "Password must be at least 6 characters long and contain at least one letter and one number."
+      );
+    }
     try {
       await createUser(email, password);
-      const updatedUser = await updateUserData({
+      await updateUserData({
         displayName: name,
         photoURL: photo,
       });
-      setUser(updatedUser);
-      navigate("/");
+      toast.success("Account created successfully ✅");
+      navigate("/auth/login");
     } catch (error) {
       const errorMessage = error.message;
       toast.error(errorMessage);
     }
+  };
+  const handleGoogleSignIn = () => {
+    googleSignIn().then(() => {
+      navigate(currentLocation);
+    });
   };
   return (
     <div className="container mx-auto px-4 py-12">
@@ -58,6 +71,8 @@ const Register = () => {
               <input
                 type="text"
                 id="name"
+                min={3}
+                required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="pl-10 w-full px-4 py-2 border border-gray-300 rounded-full focus:ring-2 focus:ring-blue-500 focus:border-blue-500
@@ -81,6 +96,7 @@ const Register = () => {
               <input
                 type="email"
                 id="email"
+                required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="pl-10 w-full px-4 py-2 border border-gray-300 rounded-full focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-500"
@@ -104,6 +120,7 @@ const Register = () => {
                 type="url"
                 id="photo"
                 value={photo}
+                required
                 onChange={(e) => setPhoto(e.target.value)}
                 className="pl-10 w-full px-4 py-2 border border-gray-300 rounded-full focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-500"
                 placeholder="https://example.com/photo.jpg"
@@ -126,6 +143,8 @@ const Register = () => {
                 type="password"
                 id="password"
                 value={password}
+                required
+                minLength={6}
                 onChange={(e) => setPassword(e.target.value)}
                 className="pl-10 w-full px-4 py-2 border border-gray-300 rounded-full focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-500"
                 placeholder="••••••••"
@@ -190,7 +209,10 @@ const Register = () => {
             Or continue with
           </p>
           <div className="flex ">
-            <button className="btn btn-outline w-full bg-base-100 hover:bg-base-200  border-gray-300 shadow-lg rounded-full">
+            <button
+              onClick={handleGoogleSignIn}
+              className="btn btn-outline w-full bg-base-100 hover:bg-base-200  border-gray-300 shadow-lg rounded-full"
+            >
               <FcGoogle className="" size={20} />
               Signup with Google
             </button>
