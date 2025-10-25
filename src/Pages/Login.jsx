@@ -43,7 +43,7 @@ const Login = () => {
 
   return (
     <div className="container mx-auto px-4 py-12">
-      <div className="max-w-md mx-auto bg-base-100 rounded-xl shadow-md overflow-hidden p-8">
+      <div className="max-w-lg mx-auto bg-base-100 rounded-xl shadow-md overflow-hidden p-8">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold mb-2">Welcome Back</h1>
           <p className="">Login to access your pet's winter care dashboard</p>

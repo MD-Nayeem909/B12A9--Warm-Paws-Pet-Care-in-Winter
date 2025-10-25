@@ -45,7 +45,7 @@ const Register = () => {
   };
   return (
     <div className="container mx-auto px-4 py-12">
-      <div className="max-w-md mx-auto bg-base-100 rounded-xl shadow-md overflow-hidden p-8">
+      <div className="max-w-lg mx-auto bg-base-100 rounded-xl shadow-md overflow-hidden p-8">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-blue-900 mb-2">
             Create Account
@@ -165,20 +165,19 @@ const Register = () => {
                 htmlFor="remember-me"
                 className="ml-2 text-sm text-gray-700 flex items-center"
               >
-                I agree to the{" "}
+                I agree to the
                 <Link
                   to="/terms-of-service"
                   className="text-blue-600 hover:text-blue-800 font-medium"
                 >
-                  {" "}
-                  Terms of Service
+                  _Terms of Service_
                 </Link>{" "}
-                and{" "}
+                and
                 <Link
                   to="/privacy-policy"
                   className="text-blue-600 hover:text-blue-800 font-medium"
                 >
-                  Privacy Policy
+                  _Privacy Policy.
                 </Link>
               </label>
             </div>

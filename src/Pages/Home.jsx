@@ -3,6 +3,8 @@ import PetSolution from '../Components/PetSolution';
 import CTA from '../Components/CTA';
 import HeroSlider from '../Components/HeroSlider';
 import TipsForPets from '../Components/TipsForPets';
+import MeetExpert from '../Components/MeetExpert';
+import Card from '../Components/Card';
 
 const Home = () => {
     return (
@@ -10,6 +12,7 @@ const Home = () => {
             <HeroSlider></HeroSlider>
             <PetSolution pageName={true}></PetSolution>
             <TipsForPets></TipsForPets>
+            <MeetExpert></MeetExpert>
             <CTA></CTA>
         </div>
     );
