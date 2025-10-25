@@ -140,9 +140,13 @@ const Navbar = () => {
                 </button>
               </div>
 
-              <Link to="/profile" className="text-white">
-                <div className="avatar w-10">
-                  <div className="ring-primary ring-offset-base-100 w-24 rounded-full ring-2 ring-offset-2">
+              <Link
+                to="/profile"
+                className="tooltip tooltip-left"
+                data-tip={user.displayName || "Profile"}
+              >
+                <div className="avatar">
+                  <div className="ring-primary ring-offset-base-100 w-10 rounded-full ring ring-offset-2">
                     <img src={user.photoURL} />
                   </div>
                 </div>

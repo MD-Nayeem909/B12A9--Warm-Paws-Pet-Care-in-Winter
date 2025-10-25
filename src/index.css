@@ -16,7 +16,6 @@
   --gradient-neutral: linear-gradient(180deg, #1e3a8a 0%, #2563eb 100%);
 }
 
-
 * {
   font-family: "Poppins", sans-serif;
 }
@@ -25,7 +24,6 @@
   background-size: cover;
   background-position: center;
 }
-
 
 .decoration {
   text-decoration: none;
@@ -52,6 +50,20 @@
 }
 .decoration:hover::after {
   width: 100%;
+}
+
+[data-tip]::before {
+  background: linear-gradient(
+    6deg,
+    rgba(124, 48, 207, 1) 0%,
+    rgba(120, 124, 255, 1) 100%
+  ) !important; /* Indigo-600 */
+  color: white !important;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 4px;
+  content: attr(data-tip);
+  font-size: 0.9rem;
 }
 
 /* Snowflake animation */
