@@ -4,6 +4,7 @@ import { useTheme } from "../Providers/ThemeContext";
 import { LogIn, LogOut, UserPlus } from "lucide-react";
 import { AuthContext } from "../Providers/AuthContext";
 import toast from "react-hot-toast";
+import { GiPawHeart } from "react-icons/gi";
 
 const Navbar = () => {
   const { user, logoutUser } = useContext(AuthContext);
@@ -21,14 +22,14 @@ const Navbar = () => {
 
   const links = ["Home", "Services", "Profile"];
   return (
-    <div className="navbar bg-linear-to-r from-indigo-500 to-purple-500 px-8 flex justify-between items-center bg-base-100 shadow-sm">
+    <div className="navbar bg-linear-to-r from-indigo-500 to-purple-500 px-0 md:px-8 flex justify-between items-center bg-base-100 shadow-sm">
       <div className="navbar container mx-auto">
-        <div className="navbar-start">
+        <section className="navbar-start">
           <div className="dropdown">
             <div
               tabIndex={0}
               role="button"
-              className="btn btn-ghost lg:hidden text-base-200 hover:bg-base-200 hover:text-primary mr-5"
+              className="btn btn-ghost lg:hidden text-base-200 hover:bg-base-200 hover:text-primary "
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -60,8 +61,33 @@ const Navbar = () => {
                   </NavLink>
                 </li>
               ))}
-              <div className="flex justify-between items-center px-5">
-                <p className="text-white text-sm decoration">Theme</p>
+              <ul className="">
+                {user ? (
+                  <li className="px-3">
+                    <NavLink onClick={handleLogout} className="decoration">
+                      {" "}
+                      Logout
+                    </NavLink>
+                  </li>
+                ) : (
+                  <ul className="flex flex-col text-[12px]">
+                    <li className="px-3">
+                      <NavLink to="/auth/login" className="decoration">
+                        {" "}
+                        Login
+                      </NavLink>
+                    </li>
+                    <li className="px-3">
+                      <NavLink to="/auth/register" className="decoration">
+                        {" "}
+                        Register
+                      </NavLink>
+                    </li>
+                  </ul>
+                )}
+              </ul>
+              <div className="flex justify-between items-center px-[20px]">
+                <p className="decoration">Theme</p>
                 <input
                   onChange={toggleTheme}
                   type="checkbox"
@@ -71,10 +97,16 @@ const Navbar = () => {
               </div>
             </ul>
           </div>
-          <NavLink to="/" className="text-3xl text-white font-semibold">
-            WarmPaws
-          </NavLink>
-        </div>
+          <div>
+            <NavLink
+              to="/"
+              className="text-3xl text-white font-semibold flex items-center gap-2"
+            >
+              <GiPawHeart size={40} />
+              WarmPaws
+            </NavLink>
+          </div>
+        </section>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             {links.map((link) => (
@@ -98,11 +130,14 @@ const Navbar = () => {
         <div className="navbar-end">
           {user ? (
             <div className="flex items-center gap-5">
-              <div className="flex items-center gap-2">
-              <LogOut className="text-white" />
-              <button onClick={handleLogout} className="text-white font-medium">
-                LogOut
-              </button>
+              <div className="hidden md:flex items-center gap-2">
+                <LogOut className="text-white" />
+                <button
+                  onClick={handleLogout}
+                  className="text-white font-medium"
+                >
+                  LogOut
+                </button>
               </div>
 
               <Link to="/profile" className="text-white">
@@ -114,7 +149,7 @@ const Navbar = () => {
               </Link>
             </div>
           ) : (
-            <div className="flex items-center text-white space-x-4">
+            <div className="md:flex items-center hidden text-white space-x-4">
               <Link to="/auth/login" className="btn-ghost flex">
                 <LogIn className="mr-2" />
                 Login
