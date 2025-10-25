@@ -82,14 +82,14 @@ const MeetExpert = () => {
       <section className="">
         <div className="mb-12 text-primary text-center">
           <h2 className="text-3xl font-bold mb-4">Meet Our Expert Vets</h2>
-          <p className="text-xl">
+          <p className="text-xl px-4">
             Connect with certified and experienced <br /> professionals
             dedicated to your pet's winter care
           </p>
         </div>
-        <div className="px-4 sm:px-6 lg:px-8">
+        <div className="">
           <div className="">
-            <p className="text-sm text-primary font-semibold mb-3">
+            <p className="text-xl font-bold px-4 mb-4">
               Showing {providers.length} Expert
               {providers.length !== 1 ? "s" : ""}
             </p>

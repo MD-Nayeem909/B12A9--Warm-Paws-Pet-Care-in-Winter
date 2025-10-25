@@ -4,11 +4,10 @@ import CTA from '../Components/CTA';
 import HeroSlider from '../Components/HeroSlider';
 import TipsForPets from '../Components/TipsForPets';
 import MeetExpert from '../Components/MeetExpert';
-import Card from '../Components/Card';
 
 const Home = () => {
     return (
-        <div className='container mx-auto px-4 py-8'>
+        <div className='container mx-auto md:px-4 py-8'>
             <HeroSlider></HeroSlider>
             <PetSolution pageName={true}></PetSolution>
             <TipsForPets></TipsForPets>

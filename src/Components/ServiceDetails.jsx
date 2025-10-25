@@ -3,6 +3,7 @@ import { Mail, Star, Home } from "lucide-react";
 import { Link, useLocation, useParams } from "react-router";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import toast from "react-hot-toast";
 
 const ServiceDetails = () => {
   const location = useLocation();
@@ -26,6 +27,10 @@ const ServiceDetails = () => {
       setLoading(false);
     }
   }, [location.state, params.id]);
+
+  const handleBookService = () => {
+    toast.success(`Successfully booked: ${service.serviceName}`);
+  };
 
   if (loading) {
     return (
@@ -108,7 +113,10 @@ const ServiceDetails = () => {
               <Link to="/" className="btn btn-outline btn-rose w-1/2 mr-2">
                 <Home className="w-4 h-4 mr-2" /> Back to Home
               </Link>
-              <button className=" btn bg-rose-600 hover:bg-rose-700 text-white w-1/2">
+              <button
+                onClick={handleBookService}
+                className=" btn bg-rose-600 hover:bg-rose-700 text-white w-1/2"
+              >
                 Book Service
               </button>
             </div>

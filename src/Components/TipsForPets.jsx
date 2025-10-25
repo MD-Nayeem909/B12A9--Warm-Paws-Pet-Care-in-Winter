@@ -46,10 +46,10 @@ const TipsForPets = () => {
     },
   ];
   return (
-    <div className="py-12">
+    <div className="mb-16">
       <div className="mb-12 text-primary text-center">
         <h2 className="text-3xl font-bold mb-4">Winter Care Tips for Pets</h2>
-        <p className="text-xl">
+        <p className="text-xl px-8">
           Professional advice to keep your furry friends healthy and happy all
           winter long
         </p>

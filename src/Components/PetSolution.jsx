@@ -42,11 +42,11 @@ const PetSolution = ({ isVisible = "", pageName = "" }) => {
         </div>
       </section>
       <section>
-        <div className="bg-base-200 shadow-md rounded-lg py-4 px-8 mb-6">
-          <h3 className="text-sm text-primary font-semibold mb-3">
+        <div className="bg-base-200 shadow-md rounded-lg py-4 mb-6">
+          <h3 className="text-md text-primary font-semibold px-4 mb-3">
             Filter by Category
           </h3>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap p-8 gap-3">
             {categories.map((cat) => (
               <button
                 key={cat}
@@ -70,7 +70,7 @@ const PetSolution = ({ isVisible = "", pageName = "" }) => {
       ) : (
         <section>
           <div>
-            <h2 className="text-xl font-bold mb-4">
+            <h2 className="text-xl font-bold px-4 mb-4">
               Showing <span>{filteredData.length}</span> services
             </h2>
           </div>
