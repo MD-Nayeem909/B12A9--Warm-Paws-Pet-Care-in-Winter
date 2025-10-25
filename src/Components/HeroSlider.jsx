@@ -1,6 +1,5 @@
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import slide1 from "../assets/bangladesh-t20-national-league-2024.jpg";
 
 // Import Swiper styles
 import "swiper/css";
@@ -17,10 +16,10 @@ const HeroSlider = () => {
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
-        // autoplay={{
-        //   delay: 2500,
-        //   disableOnInteraction: false,
-        // }}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
         pagination={{
           clickable: true,
         }}
@@ -45,20 +44,23 @@ const HeroSlider = () => {
         <SwiperSlide className="flex flex-col md:flex-row items-center bg-linear-to-r from-blue-100 to-purple-100 rounded-xl ">
           {
             <img
-              src={slide1}
+              src="https://i.ibb.co.com/wNKQL1RG/Winter-Pet-Safety-Tips.png"
               alt=""
               className=" w-full object-cover h-full overflow-hidden"
             />
           }
         </SwiperSlide>
-
-        <SwiperSlide className="flex flex-col md:flex-row items-center bg-linear-to-r from-blue-100 to-purple-100 rounded-xl p-8 mb-12  h-full">
-          Slide 2
+        {/* Slide 2 */}
+        <SwiperSlide className="flex justify-center items-center bg-linear-to-r from-blue-100 to-purple-100 rounded-xl">
+          <img
+            src="https://www.dovelewis.org/sites/default/files/inline-images/Winter%20Care%20Tips%20for%20Your%20Pets.png"
+            alt=""
+            className=" w-full object-cover h-full overflow-hidden"
+          />
         </SwiperSlide>
-
-          {/* Slide 3 */}
-        <SwiperSlide className="flex flex-col md:flex-row  bg-linear-to-r from-blue-100 to-purple-100 rounded-xl p-6 ">
-          <div className="m-4 md:m-8 flex flex-col justify-center items-center">
+        {/* Slide 3 */}
+        <SwiperSlide className="flex justify-center items-center bg-linear-to-r from-blue-100 to-purple-100 rounded-xl  ">
+          <div className=" h-full flex flex-col items-center justify-center p-8">
             <h1 className="text-4xl md:text-5xl font-bold text-blue-900 mb-4">
               Keep Your Pets Cozy This Winter
             </h1>
@@ -82,29 +84,53 @@ const HeroSlider = () => {
             </div>
           </div>
         </SwiperSlide>
-
-        <SwiperSlide className="flex flex-col md:flex-row items-center bg-linear-to-r from-blue-100 to-purple-100 rounded-xl p-8 mb-12  h-full">
-          Slide 4
+        {/* Slide 4 */}
+        <SwiperSlide className="flex flex-col md:flex-row items-center bg-linear-to-r from-blue-100 to-purple-100 rounded-xl ">
+          <img
+            src="https://i.ibb.co.com/LhrLt32Z/dog-and-cat-in-front-of-fire.jpg"
+            alt=""
+            className=" w-full object-cover h-full overflow-hidden"
+          />
         </SwiperSlide>
-
-        <SwiperSlide className="flex flex-col md:flex-row items-center bg-linear-to-r from-blue-100 to-purple-100 rounded-xl p-8 mb-12  h-full">
-          Slide 5
+        {/* Slide 5 */}
+        <SwiperSlide className="flex flex-col md:flex-row items-center bg-linear-to-r from-blue-100 to-purple-100 rounded-xl ">
+          <img
+            src="https://i.ibb.co.com/KzXKJFBJ/Pet-Tips-For-Winter-Weather.jpg"
+            alt=""
+            className=" w-full object-cover h-full overflow-hidden"
+          />
         </SwiperSlide>
-
-        <SwiperSlide className="flex flex-col md:flex-row items-center bg-linear-to-r from-blue-100 to-purple-100 rounded-xl p-8 mb-12  h-full">
-          Slide 6
+        {/* Slide 6 */}
+        <SwiperSlide className="flex flex-col md:flex-row items-center bg-linear-to-r from-blue-100 to-purple-100 rounded-xl ">
+          <img
+            src="https://i.ibb.co.com/twKwbZCX/images-q-tbn-ANd9-Gc-SH5s-Ta-Uk-OU-Vqia4-Lr5psl7-NKu-Dbue1-JEZVQ-s.jpg"
+            alt=""
+            className=" w-full object-cover h-full overflow-hidden"
+          />
         </SwiperSlide>
-
-        <SwiperSlide className="flex flex-col md:flex-row items-center bg-linear-to-r from-blue-100 to-purple-100 rounded-xl p-8 mb-12  h-full">
-          Slide 7
+        {/* Slide 7 */}
+        <SwiperSlide className="flex justify-center items-center bg-linear-to-r from-blue-100 to-purple-100 rounded-xl ">
+          <img
+            src="https://i.ibb.co.com/ZpMf1yr4/featured-image-58fb164c-d412-41ae-930d-67128246d818.jpg"
+            alt=""
+            className=" w-full object-cover h-full overflow-hidden"
+          />
         </SwiperSlide>
-
-        <SwiperSlide className="flex flex-col md:flex-row items-center bg-linear-to-r from-blue-100 to-purple-100 rounded-xl p-8 mb-12  h-full">
-          Slide 8
+        {/* Slide 8 */}
+        <SwiperSlide className="flex flex-col md:flex-row items-center bg-linear-to-r from-blue-100 to-purple-100 rounded-xl ">
+          <img
+            src="https://i.ibb.co.com/23WG1c1y/images-q-tbn-ANd9-Gc-TV6kt-Hmwzu30f-Sea-IXu-HNKDs5tu8-WTo6-SLql-DJw-If8r-6f-A7-Wvc-Gpih1zt-Q5-Trn-H0.jpg"
+            alt=""
+            className=" w-full object-cover h-full overflow-hidden"
+          />
         </SwiperSlide>
-
-        <SwiperSlide className="flex flex-col md:flex-row items-center bg-linear-to-r from-blue-100 to-purple-100 rounded-xl p-8 mb-12  h-full">
-          Slide 9
+        {/* Slide 9 */}
+        <SwiperSlide className="flex flex-col md:flex-row items-center bg-linear-to-r from-blue-100 to-purple-100 rounded-xl ">
+          <img
+            src="https://luckydogpetlodge.com/wp-content/uploads/2019/11/exercise-your-dog-in-winter.jpg"
+            alt=""
+            className=" w-full object-cover h-full overflow-hidden"
+          />
         </SwiperSlide>
       </Swiper>
     </div>

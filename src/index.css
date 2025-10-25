@@ -64,6 +64,10 @@
   border-radius: 4px;
   content: attr(data-tip);
   font-size: 0.9rem;
+  position: absolute;
+  top: 40px;
+  left: -45px;
+  transform: translateX(-50%);
 }
 
 /* Snowflake animation */
