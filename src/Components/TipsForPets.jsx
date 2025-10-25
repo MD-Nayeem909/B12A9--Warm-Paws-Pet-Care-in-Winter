@@ -47,9 +47,9 @@ const TipsForPets = () => {
   ];
   return (
     <div className="mb-16">
-      <div className="mb-12 text-primary text-center">
+      <div className="mb-12 text-primary text-center" data-aos="fade-up">
         <h2 className="text-3xl font-bold mb-4">Winter Care Tips for Pets</h2>
-        <p className="text-xl px-8">
+        <p className="text-xl px-8" data-aos="fade-up">
           Professional advice to keep your furry friends healthy and happy all
           winter long
         </p>
